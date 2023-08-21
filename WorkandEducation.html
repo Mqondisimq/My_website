@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" ccontent="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+    :root {
+  --primary-color: #212121;
+  --background-color:yellowgreen;
+  --font: sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--background-color);
+  font-family: var(--font);
+  display: flex;
+  justify-content: center;
+}
+
+/* Timeline Container */
+.timeline {
+  background: var(--primary-color);
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* Card container */
+.card {
+  position: relative;
+  max-width: 400px;
+}
+
+/* setting padding based on even or odd */
+.card:nth-child(odd) {
+  padding: 30px 0 30px 30px;
+}
+.card:nth-child(even) {
+  padding: 30px 30px 30px 0;
+}
+/* Global ::before */
+.card::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  border: solid orangered;
+}
+
+/* Setting the border of top, bottom, left */
+.card:nth-child(odd)::before {
+  left: 0px;
+  top: -4.5px;
+  bottom: -4.5px;
+  border-width: 5px 0 5px 5px;
+  border-radius: 50px 0 0 50px;
+}
+
+/* Setting the top and bottom to "-5px" because earlier it was out of a pixel in mobile devices */
+@media only screen and (max-width: 400px) {
+  .card:nth-child(odd)::before {
+    top: -5px;
+    bottom: -5px;
+  }
+}
+
+/* Setting the border of top, bottom, right */
+.card:nth-child(even)::before {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-width: 5px 5px 5px 0;
+  border-radius: 0 50px 50px 0;
+}
+
+/* Removing the border if it is the first card */
+.card:first-child::before {
+  border-top: 0;
+  border-top-left-radius: 0;
+}
+
+/* Removing the border if it is the last card  and it's odd */
+.card:last-child:nth-child(odd)::before {
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Removing the border if it is the last card  and it's even */
+.card:last-child:nth-child(even)::before {
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Information about the timeline */
+.info {
+  display: flex;
+  flex-direction: column;
+  background: #333;
+  color: gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Title of the card */
+.title {
+  color: orangered;
+  position: relative;
+}
+
+/* Timeline dot  */
+.title::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 999px;
+  border: 3px solid orangered;
+}
+
+/* text right if the card is even  */
+.card:nth-child(even) > .info > .title {
+  text-align: right;
+}
+
+/* setting dot to the left if the card is odd */
+.card:nth-child(odd) > .info > .title::before {
+  left: -45px;
+}
+
+/* setting dot to the right if the card is odd */
+.card:nth-child(even) > .info > .title::before {
+  right: -45px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="timeline">
+    <div class="outer">
+        <div class="card">
+          <div class="info">
+            <h3 class="title">Primary School</h3>
+            <p>I began my studies at King Williams Town's Tamara Primary School. 
+              The next year, in 2014, I entered high school after finishing primary school with the highest grade possible. </p>
+              <span class="qualification__date">2006 - 2013</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="info">
+            <h3 class="title">High School</h3>
+            <p>After finishing primary school, I will attend Quakeni's Masibonisane High School (2014–2018). 
+              After all, I applied to the WSU because I was in grade 12 at the time, which gave me the chance to study here the following year. </p>
+              <span class="qualification__date">2014 - 2018</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="info">
+            <h3 class="title">Tertiary level</h3>
+            <p> I began my studies here in 2019 as an IT (ECP) first-year student. I continued my studies here before completing my diploma last year.
+              I finished my IT software development diploma at the WSU last year (20202).
+              I'm currently a postgraduate student who will graduate on May 16 of this year. 
+              My latest endeavor is an advanced degree in application development. </p>
+              <span class="qualification__date">2019 - 2023</span>
+          </div>
+        </div>
+</body>
+</html>
